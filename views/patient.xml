@@ -1,0 +1,150 @@
+
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+ 
+<odoo>
+    <!-- patient.patienet form view -->
+    <record id="patient_view_form" model="ir.ui.view">
+        <field name="name">patient.view.form</field>
+        <field name="model">patient.patient</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Enter Patient Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="patient_info" string="Patient Info">
+                            <field name="age"/>
+                            <field name="id_patient"/>
+                            <field name="mobile"/>
+                            <field name="gender"/>
+                            <field name="new_patient"/>
+                        </group>
+                        <group name="other_info" string="Other Info">
+                            <field name="copatient_id"/>
+                            <field name="salary"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Diseases" name="disease">
+                            <group>
+                            
+                                <field name="diabate"/>
+                                <field name="diabate_accum" attrs="{'invisible':[('diabate','=',False)]}"/>
+                                <field name="blood_pressure"/>
+                            </group>
+                        </page>
+                        <page name="history" attrs="{'invisible':[('new_patient','=',True)]}" string="History">
+                            <field name="history"/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- patient tree view -->
+    <record id="patient_view_tree" model="ir.ui.view">
+        <field name="name">patient.view.tree</field>
+        <field name="model">patient.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="age"/>
+                <field name="id_patient"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- patient action window -->
+    <record id="patient_action" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">patient.patient</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="view_type">form</field> -->
+        <!-- <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="target">{current}</field> -->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+            </p><p>
+                <!-- More details about what a user can do with this object will be OK --> 
+            
+            </p>
+        </field>
+    </record>
+
+
+
+    <!-- copatient form view -->
+    <record id="copatient_view_form" model="ir.ui.view">
+        <field name="name">copatient.view.form</field>
+        <field name="model">copatient.copatient</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- copatient tree view -->
+    <record id="copatient_view_tree" model="ir.ui.view">
+        <field name="name">copatient.view.tree</field>
+        <field name="model">copatient.copatient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- copatient action window -->
+    <record id="copatient_action" model="ir.actions.act_window">
+        <field name="name">Copatients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">copatient.copatient</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="view_type">form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="target">{current}</field> -->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+            </p><p>
+                <!-- More details about what a user can do with this object will be OK --> 
+            
+            </p>
+        </field>
+    </record>
+
+
+
+
+    <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+    <menuitem id="clinic_menu_root" name="Clinic" sequence="1"/>
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="patients_menu_categ" name="Patients" parent="clinic_menu_root" sequence="1"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="patients_menu_act" name="Patients" parent="patients_menu_categ" action="patient_action" sequence="1"/>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="copatients_menu_act" name="Copatients" parent="patients_menu_categ" action="copatient_action" sequence="5"/>
+</odoo>

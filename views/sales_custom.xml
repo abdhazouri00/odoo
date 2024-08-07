@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- hr_employee_inherit_form inherit form view -->
+    <record id="sales_inherit_form" model="ir.ui.view">
+        <field name="name">sale.view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+
+            <xpath expr="//field[@name='payment_term_id']" position="before">
+                <!-- Add your fields here -->
+
+                <field name="info"/>
+                
+            </xpath>
+            
+        </field>
+    </record>
+
+</odoo>

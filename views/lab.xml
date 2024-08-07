@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- lab.lab form view -->
+    <record id="lab_view_form" model="ir.ui.view">
+        <field name="name">lab.view.form</field>
+        <field name="model">lab.lab</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,cancel"/>
+                    <button string="Confirm" attrs="{'invisible':[('state','!=','draft')]}" name="action_confirm" type="object" class="oe_highlight"/>
+                    <button string="Reset to Draft" attrs="{'invisible':[('state','=','draft')]}" name="action_draft" type="object"/>
+                    <button string="Canclel" name="action_cancel" type="object" class="btn-danger"/>
+                </header>
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <!-- <field name="patient_name"/> -->
+                        <field name="patient_id"/>
+                        <field name="age"/>
+                        <field name="date"/>
+                        <field name="lab_check"/>
+                        <!-- <field name="test_id"/> -->
+                        <field name="price"/>
+                    </group>
+                    <notebook>
+                        <page string="Tests" name="tests">
+                            <field name="line_ids">
+                                <tree string="" create="true" delete="true" edit="true" editable="bottom">
+                                    <field name="test_id"/>
+                                    <field name="price"/>
+                                    <!-- <field name="lab_id"/> -->
+                                </tree>
+                            </field>
+                            <field name="total"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- lab.lab tree view -->
+    <record id="lab_view_tree" model="ir.ui.view">
+        <field name="name">Laboratory Laboratory</field>
+        <field name="model">lab.lab</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <!-- <field name="patient_name"/> -->
+                <field name="patient_id"/>
+                <field name="date"/>
+                <field name="lab_check"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- lab.lab action window -->
+    <record id="lab_action" model="ir.actions.act_window">
+        <field name="name">Labrotary Tests</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">lab.lab</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="view_type">form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="target">{current}</field> -->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+            </p><p>
+                <!-- More details about what a user can do with this object will be OK --> 
+            
+            </p>
+        </field>
+    </record>
+
+
+    <!-- test.test form view -->
+    <record id="test_view_form" model="ir.ui.view">
+        <field name="name">test.view.form</field>
+        <field name="model">test.test</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                        <field name="price"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- test.test tree view -->
+    <record id="test_view_tree" model="ir.ui.view">
+        <field name="name">test.test.view.tree</field>
+        <field name="model">test.test</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="price"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- test.test action window -->
+    <record id="test_action" model="ir.actions.act_window">
+        <field name="name">Tests</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">test.test</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="view_type">form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="target">{current}</field> -->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+            </p><p>
+                <!-- More details about what a user can do with this object will be OK --> 
+            
+            </p>
+        </field>
+    </record>
+
+
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="lab_menu_categ" name="Labrotary" parent="clinic_menu_root" sequence="7"/>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="lab_menu_act" name="Labrotary" parent="lab_menu_categ" action="lab_action" sequence="1"/>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="tests_menu_act" name="Tests" parent="lab_menu_categ" action="test_action" sequence="45"/>
+
+
+</odoo>

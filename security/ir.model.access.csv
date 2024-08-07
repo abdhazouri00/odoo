@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_clinic_user,clinic user access,model_patient_patient,clinic_user,1,1,1,1
+access_clinic_admin,clinic admin access,model_patient_patient,clinic_administrator,1,1,1,1
+access_copatient_admin,coptient admin access,model_copatient_copatient,clinic_administrator,1,1,1,1
+access_lab_admin,labrotary admin access,model_lab_lab,clinic_administrator,1,1,1,1
+access_test_admin,Tests admin access,model_test_test,clinic_administrator,1,1,1,1
+access_lab_lines_admin,Lines admin access,model_lab_line,clinic_administrator,1,1,1,1
